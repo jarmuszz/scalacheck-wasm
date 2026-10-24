@@ -7,7 +7,8 @@
  * There is NO WARRANTY. See the file LICENSE for the full text.
  */
 
-package org.scalacheck.util
+package org.scalacheck
+package util
 
 import scala.collection.Set
 
@@ -54,9 +55,9 @@ private[scalacheck] trait CmdLineParser {
     else None
 
   def printHelp(): Unit = {
-    Console.out.println("Available options:")
+    Platform.println("Available options:")
     opts.foreach { opt =>
-      Console.out.println("  " + opt.names.map("-" + _).mkString(", ") + ": " + opt.help)
+      Platform.println("  " + opt.names.map("-" + _).mkString(", ") + ": " + opt.help)
     }
   }
 

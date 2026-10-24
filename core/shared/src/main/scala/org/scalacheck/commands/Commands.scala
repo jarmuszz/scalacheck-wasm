@@ -229,7 +229,7 @@ trait Commands {
             }
 
           case None => // NOT IMPLEMENTED Block until canCreateNewSut is true
-            println("NOT IMPL")
+            Platform.println("NOT IMPL")
             Prop.undecided
         }
       } catch {

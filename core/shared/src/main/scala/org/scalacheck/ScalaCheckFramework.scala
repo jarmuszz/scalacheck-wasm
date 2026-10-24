@@ -262,7 +262,7 @@ final class ScalaCheckFramework extends Framework {
     val (prms, unknownArgs) = Test.CmdLineParser.parseParams(args)
 
     if (unknownArgs.nonEmpty) {
-      println(s"Warning: Unknown ScalaCheck args provided: ${unknownArgs.mkString(" ")}")
+      Platform.println(s"Warning: Unknown ScalaCheck args provided: ${unknownArgs.mkString(" ")}")
     }
 
     val applyCmdParams = prms.andThen(sbtSetup(loader))

@@ -37,7 +37,7 @@ sealed abstract class Prop extends Serializable { self =>
           (prms0.withInitialSeed(sd), sd)
       }
       val res = self(prms)
-      if (res.failure) println(s"failing seed for $name is ${seed.toBase64}")
+      if (res.failure) Platform.println(s"failing seed for $name is ${seed.toBase64}")
       res
     }
 
@@ -108,7 +108,7 @@ sealed abstract class Prop extends Serializable { self =>
         if (Test.check(params, this).passed) 0
         else 1
       case (_, os) =>
-        Console.out.println("Incorrect options:\n  " + os.mkString(", "))
+        Platform.println("Incorrect options:\n  " + os.mkString(", "))
         Test.CmdLineParser.printHelp()
         -1
     }

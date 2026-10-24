@@ -76,4 +76,8 @@ private[scalacheck] object Platform {
   class EnableReflectiveInstantiation extends scala.annotation.Annotation
 
   def getClassLoader: ClassLoader = getClass.getClassLoader
+
+  def println(msg: String): Unit = scala.Console.println(msg)
+  def nanoTime(): Long = System.nanoTime()
+  def nextRandomLong(): Long =  scala.util.Random.nextLong()
 }

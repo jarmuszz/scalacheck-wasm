@@ -64,7 +64,7 @@ object PropSpecification extends Properties("Prop") {
       case n if (n & 1) == 0 => throw new java.lang.Exception("exception")
       case _ => loopForever
     }
-    def loopForever: Nothing = { println("looping"); loopForever }
+    def loopForever: Nothing = { Platform.println("looping"); loopForever }
 
     (n > 0) ==> positiveDomain(n)
   }

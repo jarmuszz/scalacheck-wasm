@@ -397,7 +397,7 @@ object Test {
             case Success(seed) =>
               Some(seed)
             case Failure(_) =>
-              println(s"WARNING: ignoring invalid Base-64 seed ($str)")
+              Platform.println(s"WARNING: ignoring invalid Base-64 seed ($str)")
               None
           }
         }
@@ -514,9 +514,9 @@ object Test {
       } else res
     }
 
-    val t0 = System.nanoTime()
+    val t0 = Platform.nanoTime()
     val r = Platform.runWorkers(params, workerFun, () => stop = true)
-    val millis = (System.nanoTime() - t0) / 1000000L
+    val millis = (Platform.nanoTime() - t0) / 1000000L
     val timedRes = r.copy(time = millis)
     params.testCallback.onTestResult("", timedRes)
     timedRes

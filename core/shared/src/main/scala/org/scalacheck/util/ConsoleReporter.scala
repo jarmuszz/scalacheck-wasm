@@ -7,7 +7,8 @@
  * There is NO WARRANTY. See the file LICENSE for the full text.
  */
 
-package org.scalacheck.util
+package org.scalacheck
+package util
 
 import org.scalacheck.Test
 
@@ -25,11 +26,11 @@ class ConsoleReporter(val verbosity: Int, val columnWidth: Int)
     if (verbosity > 0) {
       if (name == "") {
         val s = (if (res.passed) "+ " else "! ") + pretty(res, prettyPrms)
-        println(format(s, "", "", columnWidth))
+        Platform.println(format(s, "", "", columnWidth))
       } else {
         val s = (if (res.passed) "+ " else "! ") + name + ": " +
           pretty(res, prettyPrms)
-        println(format(s, "", "", columnWidth))
+        Platform.println(format(s, "", "", columnWidth))
       }
     }
   }

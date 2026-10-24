@@ -1,6 +1,6 @@
 val Scala212 = "2.12.21"
 val Scala213 = "2.13.18"
-val Scala3 = "3.3.7"
+val Scala3 = "3.3.8"
 
 name := "scalacheck"
 ThisBuild / organization := "org.scalacheck"
@@ -37,7 +37,7 @@ ThisBuild / githubWorkflowAddedJobs ++= Seq(
       WorkflowStep.Run(
         List(
           "cd examples",
-          "for d in */ ; do cd \"$d\" && sbt test:compile && cd ../ ; done"),
+          "for d in */ ; do cd \"$d\" && sbt Test/compile && cd ../ ; done"),
         name = Some("Build examples"))),
     javas = List(Java8),
     scalas = Nil
@@ -47,14 +47,14 @@ ThisBuild / githubWorkflowAddedJobs ++= Seq(
     "Bench",
     githubWorkflowJobSetup.value.toList ::: List(
       WorkflowStep.Sbt(
-        List("bench/jmh:run -p genSize=0 -p seedCount=0 -bs 1 -wi 0 -i 1 -f 0 -t 1 -r 0 org.scalacheck.bench.GenBench"),
+        List("bench/Jmh/run -p genSize=0 -p seedCount=0 -bs 1 -wi 0 -i 1 -f 0 -t 1 -r 0 org.scalacheck.bench.GenBench"),
         name = Some("Build benchmark suite"))),
     javas = List(Java8),
     scalas = Nil
   )
 )
 
-ThisBuild / version := "1.19-WASM"
+ThisBuild / version := "1.20.0-WASM"
 ThisBuild / tlMimaPreviousVersions ++= Set(
   // manually added because tags are not v-prefixed
   "1.14.0",
@@ -96,7 +96,7 @@ lazy val core = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .jvmSettings(
     Test / fork := true,
     libraryDependencies ++= Seq(
-      "org.apache.commons" % "commons-lang3" % "3.20.0" % Test,
+      "org.apache.commons" % "commons-lang3" % "3.21.0" % Test,
       "org.scala-sbt" % "test-interface" % "1.0"
     )
   )
@@ -107,7 +107,7 @@ lazy val core = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .nativeSettings(
     libraryDependencies ++= Seq(
-      "org.scala-native" %%% "test-interface" % nativeVersion
+      "org.scala-native" %%% "test-interface-sbt-defs" % nativeVersion
     ),
     tlVersionIntroduced := List("2.12", "2.13", "3").map(_ -> "1.18.0").toMap
   )
