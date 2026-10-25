@@ -102,7 +102,8 @@ lazy val core = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   )
   .jsSettings(
     libraryDependencies +=
-      ("org.scala-js" %% "scalajs-test-interface" % scalaJSVersion).cross(CrossVersion.for3Use2_13),
+      ("io.github.scala-wasm" %% "scalajs-test-interface" % scalaJSVersion).cross(CrossVersion.for3Use2_13),
+    libraryDependencies += "io.github.scala-wasm" %%% "wasi4s" % "0.0.1+wasi-0.2.12",
     tlVersionIntroduced ++= List("2.12", "2.13").map(_ -> "1.14.3").toMap
   )
   .nativeSettings(
