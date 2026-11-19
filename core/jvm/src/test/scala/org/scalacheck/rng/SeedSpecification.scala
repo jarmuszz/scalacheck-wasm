@@ -70,6 +70,12 @@ object SeedSpecification extends Properties("Seed") {
       s.reseed(n) != s
     }
 
+  property("apply(Long) is stable across Scala versions") =
+    Prop.?=(Seed(123L).toBase64, "TY08VxWT5n_56uBWJg4agp08XFOPEuEozf3rwlHQMFI=")
+
+  property("reseed is stable across Scala versions") =
+    Prop.?=(Seed(123L).reseed(0x0123456789abcdefL).toBase64, "XtqjLy60IF0bSfhpvfv27l7-5SepJPt_NaQHr5YPQ_C=")
+
   property("base-64 serialization works") =
     forAll { (s0: Seed) =>
       Try(s0) == Seed.fromBase64(s0.toBase64)

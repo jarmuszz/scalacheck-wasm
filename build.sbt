@@ -1,6 +1,6 @@
 val Scala212 = "2.12.21"
 val Scala213 = "2.13.18"
-val Scala3 = "3.3.8"
+val Scala3 = "3.3.9"
 
 name := "scalacheck"
 ThisBuild / organization := "org.scalacheck"
@@ -96,7 +96,7 @@ lazy val core = crossProject(JVMPlatform, JSPlatform, NativePlatform)
   .jvmSettings(
     Test / fork := true,
     libraryDependencies ++= Seq(
-      "org.apache.commons" % "commons-lang3" % "3.21.0" % Test,
+      "org.apache.commons" % "commons-lang3" % "3.22.0" % Test,
       "org.scala-sbt" % "test-interface" % "1.0"
     )
   )
